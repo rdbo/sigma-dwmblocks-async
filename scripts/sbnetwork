@@ -51,7 +51,7 @@ speed_tx="$(convert_unit "$speed_tx" 'KiB/s')"
 speed_tx="$(convert_unit "$speed_tx" 'MiB/s')"
 speed_tx="$(convert_unit "$speed_tx" 'GiB/s')"
 
-echo " $speed_tx  $speed_rx"
+echo "   $speed_tx  $speed_rx"
 
 if [ "$BLOCK_BUTTON" = "1" ]; then
 	new_rx="$(convert_unit "$new_rx" "KiB")"
