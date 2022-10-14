@@ -61,6 +61,6 @@ if [ "$BLOCK_BUTTON" = "1" ]; then
 	new_tx="$(convert_unit "$new_tx" "KiB")"
 	new_tx="$(convert_unit "$new_tx" "MiB")"
 	new_tx="$(convert_unit "$new_tx" "GiB")"
-        notif=$(echo "Total Downloads : $new_rx\nTotal Uploads : $new_tx")
+        notif=$(echo "Total Downloads  : $new_rx\nTotal Uploads  :   $new_tx")
         notify-send "$notif"
 fi
