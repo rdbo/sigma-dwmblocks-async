@@ -10,10 +10,11 @@ NEONGREEN="#00ffc8"
 alias dmenu='dmenu -fn "$FONT" -nb "$DARKBLUE" -nf "$NEONGREEN" -sb "$NEONGREEN" -sf "$DARKBLUE"'
 
 if [ "$BLOCK_BUTTON" = "1" ]; then
-	choice="$(echo "Quit\nPower Off\nReboot" | dmenu)"
+	choice="$(echo "Lock Screen\nQuit\nPower Off\nReboot" | dmenu)"
 
 	echo "CHOICE: $choice"
 	case "$choice" in
+		"Lock Screen") slock ;;
 		"Quit") pkill -9 dwm;;
 		"Power Off") st -c "wmprompt" -f "$FONT" -- sudo poweroff;;
 		"Reboot") st -c "wmprompt" -f "$FONT" -- sudo reboot;;
