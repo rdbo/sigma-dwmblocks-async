@@ -20,13 +20,14 @@ for arg in $@; do
 		ICON_ON="$WLAN_ICON_ON"
 		ICON_OFF="$WLAN_ICON_OFF"
 	elif [ "$arg" = "-6" ]; then
-		MATCH_STR="inet" # will match both 'inet' and 'inet6'
+		# MATCH_STR="inet" # will match both 'inet' and 'inet6'
+                MATCH_STR="inet6 "
 	else
 		IFACE="$arg"
 	fi
 done
 
-IFACE_INFO="$(ifconfig "$IFACE" 2>/dev/null)"
+IFACE_INFO="$(ip address show "$IFACE" 2>/dev/null)"
 if [ $? -ne 0 ]; then
 	exit 2
 fi
@@ -38,7 +39,7 @@ else
 fi
 
 if [ "$BLOCK_BUTTON" = "1" ]; then
-	IFACE_IP="$(ifconfig $IFACE | grep inet | head -n 1 | cut -d " " -f 10)"
+	IFACE_IP="$(ip address show "$IFACE" | grep "$MATCH_STR" | head -n 1 | cut -d " " -f 6)"
 	if [ -z "$IFACE_IP" ]; then
 		IFACE_IP="NONE"
 	fi
