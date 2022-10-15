@@ -5,8 +5,8 @@
 const Block blocks[] = {
         BLOCK("sbnetwork",        1,  17),
 	BLOCK("sbtime",           1,  18),
-        BLOCK("sbnwif enp1s0",    5,  19),
-        BLOCK("sbnwif -w wlp2s0", 5,  20),
+        BLOCK("sbnwif eth0",    5,  19),
+        BLOCK("sbnwif -w wlan0", 5,  20),
         BLOCK("sbmemory",         5,  21),
         BLOCK("sbbattery BAT1",   10, 22),
         BLOCK("sbaudio sink",     1,  23),
