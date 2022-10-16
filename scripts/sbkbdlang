@@ -1,0 +1,7 @@
+#!/bin/sh
+
+echo " "
+
+kbdlang="$(echo "us\nbr\nru" | dmenu -p "Choose your keyboard language: " -fn "FiraCode Nerd Font:size=10" -nb "#101a20" -nf "#00ffc8" -sb "#00ffc8" -sf "#101a20")"
+setxkbmap -layout "$kbdlang"
+notify-send "  Keyboard language set to: $kbdlang"
