@@ -32,24 +32,25 @@ if [ $? -ne 0 ]; then
 	exit 2
 fi
 
-if echo "$IFACE_INFO" | grep "$MATCH_STR" > /dev/null; then
+IFACE_IP="$(ip address show "$IFACE" | grep "$MATCH_STR" | head -n 1 | cut -d " " -f 6)"
+if [ -z "$IFACE_IP" ]; then
+	IFACE_IP="NONE"
+fi
+
+if ip address show "$IFACE" | grep " state UP " > /dev/null; then
+	IFACE_STATE="UP"
+else
+	IFACE_STATE="DOWN"
+fi
+
+if [ "$IFACE_STATE" = "UP" ] && [ "$IFACE_IP" != "NONE" ]; then
 	echo "$ICON_ON $IFACE"
 else
 	echo "$ICON_OFF $IFACE"
 fi
 
 if [ "$BLOCK_BUTTON" = "1" ]; then
-	IFACE_IP="$(ip address show "$IFACE" | grep "$MATCH_STR" | head -n 1 | cut -d " " -f 6)"
-	if [ -z "$IFACE_IP" ]; then
-		IFACE_IP="NONE"
-	fi
-
-	if ip address show "$IFACE" | grep " state UP "; then
-		IFACE_STATUS="UP"
-	else
-		IFACE_STATUS="DOWN"
-	fi
-	notif="$(echo "Interface  : $IFACE\nState  :     $IFACE_STATUS\nIP 直 :        $IFACE_IP")"
+	notif="$(echo "Interface  : $IFACE\nState  :     $IFACE_STATE\nIP 直 :        $IFACE_IP")"
 	notify-send "$notif"
 fi
 
