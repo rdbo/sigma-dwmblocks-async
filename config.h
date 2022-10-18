@@ -15,6 +15,6 @@ const Block blocks[] = {
         BLOCK("sbbluetooth",      0,  26),
         BLOCK("sbscrsht",         0,  27),
         BLOCK("sbvirtkbd",        0,  28),
-        BLOCK("sbkbdlang",        0,  29),
+        BLOCK("sbkbdlayout",      0,  29),
         BLOCK("sbpower",          0,  30),
 };
